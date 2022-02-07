@@ -161,15 +161,15 @@ class TestHTTPClient(unittest.TestCase):
         http = httpclass.HTTPClient()
         req = http.GET("http://%s:%d/49872398432" % (BASEHOST,BASEPORT) )
         self.assertTrue(req != None, "None Returned!")
-        self.assertTrue(req.code == 404)
-
+        self.assertTrue(req.code == 404) 
+    
     def test404POST(self):
         '''Test against 404 errors'''
         MyHTTPHandler.post = nothing_available
         http = httpclass.HTTPClient()
         req = http.POST("http://%s:%d/49872398432" % (BASEHOST,BASEPORT) )
         self.assertTrue(req != None, "None Returned!")
-        self.assertTrue(req.code == 404)
+        self.assertTrue(req.code == 404) 
 
     def testGET(self):
         '''Test HTTP GET'''
@@ -191,8 +191,8 @@ class TestHTTPClient(unittest.TestCase):
         url = "http://%s:%d/%s" % (BASEHOST,BASEPORT, path)
         req = http.GET( url )
         self.assertTrue(req != None, "None Returned!")
-        self.assertTrue(req.code == 200)
-
+        self.assertTrue(req.code == 200) 
+    
     def testPOSTHeaders(self):
         '''Test HTTP POST Headers'''
         MyHTTPHandler.post = post_header_check
@@ -202,7 +202,7 @@ class TestHTTPClient(unittest.TestCase):
         url = "http://%s:%d/%s" % (BASEHOST,BASEPORT, path)
         req = http.POST( url )
         self.assertTrue(req != None, "None Returned!")
-        self.assertTrue(req.code == 200,"Code is %s but I wanted a 200 OK" % req.code)
+        self.assertTrue(req.code == 200,"Code is %s but I wanted a 200 OK" % req.code) 
 
         
         
@@ -232,7 +232,7 @@ class TestHTTPClient(unittest.TestCase):
             if (req.code == 200):
                 self.assertTrue(req.body.find("DOCTYPE")>=0 or 
                                 req.body.find("<body")>=0 , 
-                                "%s Data: [%s] " % (url,req.body))
+                                "%s Data: [%s] " % (url,req.body)) 
     
     def testPOST(self):
         '''Test HTTP POST with an echo server'''
@@ -254,8 +254,8 @@ class TestHTTPClient(unittest.TestCase):
         for key in args:
             self.assertTrue(args[key] == outargs[key][0], "Key [%s] not found" % key)
         for key in outargs:
-            self.assertTrue(args[key] == outargs[key][0], "Key [%s] not found" % key)
-
+            self.assertTrue(args[key] == outargs[key][0], "Key [%s] not found" % key) 
+ 
     @classmethod
     def tearDownClass(self):        
         if (TestHTTPClient.httpd!=None):
