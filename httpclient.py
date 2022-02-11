@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-# Copyright 2016 Abram Hindle, https://github.com/tywtyw2002, and https://github.com/treedust
+# Copyright 2022 Gurjog Singh, 2016 Abram Hindle, https://github.com/tywtyw2002, and https://github.com/treedust
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -54,10 +54,10 @@ class HTTPClient(object):
         #parsing and printing headers from the response (data) recieved from server
         header_block = data.split('\r\n\r\n')[0]
         headers = header_block.split('\r\n')
-        
+
         for header in headers:
             print(header)
-        print('\r\n')
+        print('\r\n') 
 
     def get_body(self, data):
         
@@ -93,6 +93,7 @@ class HTTPClient(object):
         self.path = None
 
         #BREAKING DOWN URL
+        #how to parse url from https://docs.python.org/3/library/urllib.parse.html (Copyright 2001-2022, Python Software Foundation)
         parsed_url = urllib.parse.urlparse(url)
 
         self.host = parsed_url.hostname
@@ -127,6 +128,7 @@ class HTTPClient(object):
         self.get_headers(data)
         self.code = int(self.get_code(data))
         self.body = self.get_body(data)
+
     
         #CLOSING 
         self.close()
@@ -142,13 +144,14 @@ class HTTPClient(object):
         if args == None or "":
             self.is_request_body = False
         else:
+            #how to encode from https://docs.python.org/3/library/urllib.parse.html (Copyright 2001-2022, Python Software Foundation)
             self.request_body = urllib.parse.urlencode(args)
             self.content_length = len(bytearray(self.request_body, 'utf-8'))
             self.is_request_body = True
         
-        print(args, "ARGUMENTS BEING SENT")
 
         #BREAKING DOWN URL
+        #how to parse url from https://docs.python.org/3/library/urllib.parse.html (Copyright 2001-2022, Python Software Foundation)
         parsed_url = urllib.parse.urlparse(url)
 
         self.host = parsed_url.hostname
